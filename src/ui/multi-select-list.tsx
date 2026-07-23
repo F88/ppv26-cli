@@ -89,7 +89,7 @@ export function MultiSelectList({
             ? ` ${item.disabledNote}`
             : '';
         return (
-          <Box key={item.label} flexDirection="column">
+          <Box key={index} flexDirection="column">
             <Text
               color={index === cursor ? 'cyan' : undefined}
               dimColor={item.disabled === true && index !== cursor}

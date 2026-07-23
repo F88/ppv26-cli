@@ -67,7 +67,7 @@ export function Menu({
         const index = start + sliceIndex;
         return (
           <Text
-            key={item.label}
+            key={index}
             color={index === cursor ? 'cyan' : undefined}
             dimColor={item.dim === true && index !== cursor}
           >
