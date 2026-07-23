@@ -23,9 +23,9 @@
     "url": "https://github.com/F88/ppv26-cli/issues"
   },
   "bin": {
-    "ppv-cli": "./dist/ppv-cli.js",
-    "ppex": "./dist/ppex.js",
-    "pptop": "./dist/pptop.js"
+    "ppv-cli": "dist/ppv-cli.js",
+    "ppex": "dist/ppex.js",
+    "pptop": "dist/pptop.js"
   },
   "files": [
     "dist"
