@@ -56,9 +56,6 @@
     "react": "^19.2.8",
     "wrap-ansi": "^10.0.0"
   },
-  "overrides": {
-    "vite": "8.1.4"
-  },
   "devDependencies": {
     "@eslint/js": "^10.0.1",
     "@types/node": "^24.0.0",
