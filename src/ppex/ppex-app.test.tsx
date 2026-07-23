@@ -11,6 +11,13 @@ const ARROW_DOWN = '\u001B[B';
 const ENTER = '\r';
 const ESCAPE = '\u001B';
 
+// vi.waitFor's 1s default expires on slow Windows CI runners before
+// Ink finishes a full-screen re-render; give every transition wait
+// the same headroom the 15s suite testTimeout already allows for.
+function waitForFrame(check: () => void): Promise<void> {
+  return vi.waitFor(check, { timeout: 5000 });
+}
+
 function prototypeFixture(id: number, name: string): Record<string, unknown> {
   return {
     id,
@@ -70,7 +77,7 @@ describe('PpexApp', { retry: 2 }, () => {
 
   it('offers only the create option when no snapshot exists', async () => {
     const { lastFrame, unmount } = render(<PpexApp snapshotDir={dir} />);
-    await vi.waitFor(() => {
+    await waitForFrame(() => {
       expect(lastFrame()).toContain('snapshot がありません');
     });
     expect(lastFrame()).toContain(CREATE_LABEL);
@@ -81,14 +88,14 @@ describe('PpexApp', { retry: 2 }, () => {
   it('loads a snapshot and shows the metadata header with the menu', async () => {
     await writeSnapshotFixture(dir);
     const { lastFrame, stdin, unmount } = render(<PpexApp snapshotDir={dir} />);
-    await vi.waitFor(() => {
+    await waitForFrame(() => {
       expect(lastFrame()).toContain('[最新]');
     });
 
     stdin.write(ENTER);
     // Wait for the menu cursor: "スナップショット" alone also matches
     // the picker hint (m: スナップショット管理).
-    await vi.waitFor(() => {
+    await waitForFrame(() => {
       expect(lastFrame()).toContain(`> ${MAIN_MENU.search}`);
     });
     const frame = lastFrame() ?? '';
@@ -105,29 +112,31 @@ describe('PpexApp', { retry: 2 }, () => {
   it('opens the snapshot manager with m and protects the loaded snapshot', async () => {
     await writeSnapshotFixture(dir);
     const { lastFrame, stdin, unmount } = render(<PpexApp snapshotDir={dir} />);
-    await vi.waitFor(() => {
+    await waitForFrame(() => {
       expect(lastFrame()).toContain('[最新]');
     });
     stdin.write(ENTER); // load
-    await vi.waitFor(() => {
+    await waitForFrame(() => {
       expect(lastFrame()).toContain(`> ${MAIN_MENU.search}`);
     });
     stdin.write(ARROW_DOWN); // 作品探索 -> スナップショット
-    await vi.waitFor(() => {
+    await waitForFrame(() => {
       expect(lastFrame()).toContain(`> ${MAIN_MENU.snapshot}`);
     });
     stdin.write(ENTER); // -> picker (direct; no intermediate menu)
-    await vi.waitFor(() => {
+    await waitForFrame(() => {
       expect(lastFrame()).toContain('m: スナップショット管理');
     });
     stdin.write('m'); // -> snapshot manager
-    await vi.waitFor(() => {
+    // The rows and their sizes load asynchronously after the screen
+    // mounts, so wait for them too, not just the title.
+    await waitForFrame(() => {
       expect(lastFrame()).toContain('Snapshot管理');
+      // The loaded snapshot cannot be selected, and sizes are shown.
+      expect(lastFrame()).toContain('[-]');
+      expect(lastFrame()).toContain('(ロード中)');
+      expect(lastFrame()).toContain('KB');
     });
-    // The loaded snapshot cannot be selected, and sizes are shown.
-    expect(lastFrame()).toContain('[-]');
-    expect(lastFrame()).toContain('(ロード中)');
-    expect(lastFrame()).toContain('KB');
     unmount();
   });
 
@@ -135,7 +144,7 @@ describe('PpexApp', { retry: 2 }, () => {
     const filePath = await writeSnapshotFixture(dir);
     const fileName = path.basename(filePath);
     const { lastFrame, stdin, unmount } = render(<PpexApp snapshotDir={dir} />);
-    await vi.waitFor(() => {
+    await waitForFrame(() => {
       expect(lastFrame()).toContain('[最新]');
     });
     // At startup nothing is loaded yet: no current marker.
@@ -146,15 +155,15 @@ describe('PpexApp', { retry: 2 }, () => {
     // Wait for the menu cursor, not just the label: the cursor
     // proves the main-menu Menu is mounted and owns the keys
     // (looser waits lost the next keypress on slow CI runners).
-    await vi.waitFor(() => {
+    await waitForFrame(() => {
       expect(lastFrame()).toContain(`> ${MAIN_MENU.search}`);
     });
     stdin.write(ARROW_DOWN); // 作品探索 -> スナップショット
-    await vi.waitFor(() => {
+    await waitForFrame(() => {
       expect(lastFrame()).toContain(`> ${MAIN_MENU.snapshot}`);
     });
     stdin.write(ENTER); // -> picker (direct)
-    await vi.waitFor(() => {
+    await waitForFrame(() => {
       expect(lastFrame()).toContain('snapshot を選択');
     });
     // The loaded snapshot is marked, and Esc-back is offered.
@@ -167,15 +176,15 @@ describe('PpexApp', { retry: 2 }, () => {
   it('opens 作品探索 from the menu with every prototype listed', async () => {
     await writeSnapshotFixture(dir);
     const { lastFrame, stdin, unmount } = render(<PpexApp snapshotDir={dir} />);
-    await vi.waitFor(() => {
+    await waitForFrame(() => {
       expect(lastFrame()).toContain('[最新]');
     });
     stdin.write(ENTER); // load
-    await vi.waitFor(() => {
+    await waitForFrame(() => {
       expect(lastFrame()).toContain(`> ${MAIN_MENU.search}`);
     });
     stdin.write(ENTER); // 作品探索 is the first item
-    await vi.waitFor(() => {
+    await waitForFrame(() => {
       expect(lastFrame()).toContain('ヒット: 2件 (全2件)');
     });
     // Rows are ID ascending; the header stays visible.
@@ -184,7 +193,7 @@ describe('PpexApp', { retry: 2 }, () => {
     expect(lastFrame()).toContain('出力日時: 2026-07-15');
 
     stdin.write(ESCAPE); // back to the main menu
-    await vi.waitFor(() => {
+    await waitForFrame(() => {
       expect(lastFrame()).toContain(`> ${MAIN_MENU.search}`);
     });
     unmount();
@@ -194,11 +203,11 @@ describe('PpexApp', { retry: 2 }, () => {
     const broken = path.join(dir, 'snapshot-20260715T100000Z-1.json');
     await writeFile(broken, '{ broken', 'utf8');
     const { lastFrame, stdin, unmount } = render(<PpexApp snapshotDir={dir} />);
-    await vi.waitFor(() => {
+    await waitForFrame(() => {
       expect(lastFrame()).toContain('snapshot を選択');
     });
     stdin.write(ENTER);
-    await vi.waitFor(() => {
+    await waitForFrame(() => {
       expect(lastFrame()).toContain('ロードに失敗しました');
     });
     // Still on the picker; the create option remains available.
