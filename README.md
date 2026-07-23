@@ -1,5 +1,17 @@
 # ppv26-cli
 
+[![CI](https://github.com/F88/ppv26-cli/actions/workflows/ci.yml/badge.svg)](https://github.com/F88/ppv26-cli/actions/workflows/ci.yml)
+[![CodeQL](https://github.com/F88/ppv26-cli/actions/workflows/github-code-scanning/codeql/badge.svg)](https://github.com/F88/ppv26-cli/actions/workflows/github-code-scanning/codeql)
+[![GitHub Advanced Security](https://github.com/F88/ppv26-cli/actions/workflows/agents/github-advanced-security/badge.svg)](https://github.com/F88/ppv26-cli/actions/workflows/agents/github-advanced-security)
+[![Publish package to npmjs.com](https://github.com/F88/ppv26-cli/actions/workflows/publish-package-to-npmjs.yml/badge.svg)](https://github.com/F88/ppv26-cli/actions/workflows/publish-package-to-npmjs.yml)
+
+[![npm version](https://badge.fury.io/js/ppv26-cli.svg?icon=si%3Anpm)](https://badge.fury.io/js/ppv26-cli)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+![Issues](https://img.shields.io/github/issues/F88/ppv26-cli?label=issues)
+
+[![Ask DeepWiki](https://deepwiki.com/badge.svg)](https://deepwiki.com/F88/ppv26-cli)
+[![View Code Wiki](https://www.gstatic.com/_/boq-sdlc-agents-ui/_/r/YUi5dj2UWvE.svg)](https://codewiki.google/github.com/f88/ppv26-cli)
+
 ProtoPedia Viewer CLI tools - inspect ProtoPedia API data offline, from local snapshots.
 
 ## Overview
