@@ -1,0 +1,12 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "noEmit": false,
+    "outDir": "dist",
+    "rootDir": "src",
+    "sourceMap": true
+  },
+  "//": "Emit only the ppv-cli binary and its shared React-free core. The Ink binaries (pptop, ppex) and their ui/ tree are produced by esbuild (scripts/build-ink.mjs), so compiling them here too would double-compile, leave dead dist/ui|pptop|ppex artifacts, and (via sourceMap) drop stale .map files next to the esbuild bundles. Full-tree type checking still runs via `tsc --noEmit` on tsconfig.json.",
+  "include": ["src/ppv-cli.ts", "src/ppc/**/*", "src/core/**/*"],
+  "exclude": ["src/**/*.test.*"]
+}

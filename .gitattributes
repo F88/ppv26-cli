@@ -1,0 +1,4 @@
+# Keep LF line endings in the working tree on every platform
+# (Windows runners default to core.autocrlf=true, which would break
+# prettier's LF expectation).
+* text=auto eol=lf

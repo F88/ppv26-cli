@@ -1,0 +1,15 @@
+# Build outputs
+build/
+dist/
+coverage/
+
+# Dependencies
+node_modules/
+
+# Snapshot data (large generated JSON)
+snapshots/
+
+# Misc
+package-lock.json
+renovate.json
+
