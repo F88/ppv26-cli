@@ -44,7 +44,7 @@
     "typecheck": "tsc --noEmit",
     "test": "vitest run",
     "test:watch": "vitest",
-    "prepublishOnly": "node -e \"console.error('This package is private and must not be published.'); process.exit(1)\""
+    "prepublishOnly": "npm run build"
   },
   "dependencies": {
     "commander": "^15.0.0",
