@@ -1,12 +1,12 @@
 import { describe, expect, it } from 'vitest';
 
+import { sanitizeDisplayText } from '../core/sanitize-display-text.js';
 import {
   cellValue,
   columnLabel,
   compareByColumn,
   visibleColumnsForWidth,
 } from './table-columns.js';
-import { sanitizeDisplayText } from '../core/sanitize-display-text.js';
 
 import type { NormalizedPrototype } from 'promidas/types';
 

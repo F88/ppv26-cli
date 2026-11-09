@@ -1,8 +1,8 @@
 import { render } from 'ink-testing-library';
 import { describe, expect, it } from 'vitest';
 
-import { TokenMissingNotice } from './token-missing-notice.js';
 import { SET_TOKEN_COMMAND } from '../core/token.js';
+import { TokenMissingNotice } from './token-missing-notice.js';
 
 // The headless test frame carries no ANSI colour, so these assert the
 // content and the two-line split (error line + guide line with the

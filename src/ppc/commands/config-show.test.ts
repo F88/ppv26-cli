@@ -4,12 +4,12 @@ import path from 'node:path';
 
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 
-import { maskToken, runConfigShow } from './config-show.js';
 import {
   initConfigEntries,
   resetConfigEntriesForTests,
 } from '../../core/config-entries.js';
 import { PPV_CLI_TOOL_NAME } from '../../core/constants.js';
+import { maskToken, runConfigShow } from './config-show.js';
 
 const KEY = 'PROTOPEDIA_API_V2_TOKEN';
 

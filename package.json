@@ -47,30 +47,30 @@
     "prepublishOnly": "npm run build"
   },
   "dependencies": {
-    "commander": "^15.0.0",
-    "dotenv": "^17.4.2",
+    "commander": "^15.1.0",
+    "dotenv": "^18.0.10",
     "ink": "^7.1.1",
-    "promidas": "^3.1.0",
-    "promidas-utils": "^3.2.1",
-    "protopedia-api-v2-client": "^3.0.0",
-    "react": "^19.2.8",
-    "wrap-ansi": "^10.0.0"
+    "promidas": "^5.0.0",
+    "promidas-utils": "^5.0.0",
+    "protopedia-api-v2-client": "^5.2.0",
+    "react": "^19.3.1",
+    "wrap-ansi": "^10.0.2"
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",
-    "@types/node": "^24.0.0",
-    "@types/react": "^19.2.17",
-    "esbuild": "^0.28.1",
-    "eslint": "^10.7.0",
+    "@types/node": "^24.19.2",
+    "@types/react": "^19.3.0",
+    "esbuild": "^0.28.2",
+    "eslint": "^10.14.0",
     "eslint-config-prettier": "^10.1.8",
-    "eslint-plugin-import-x": "^4.17.1",
+    "eslint-plugin-import-x": "^4.18.1",
     "eslint-plugin-unused-imports": "^4.4.1",
-    "globals": "^17.7.0",
+    "globals": "^17.14.0",
     "ink-testing-library": "^4.0.0",
-    "prettier": "^3.9.6",
-    "tsx": "^4.23.1",
+    "prettier": "^3.9.10",
+    "tsx": "^4.23.15",
     "typescript": "^5.9.0",
-    "typescript-eslint": "^8.65.0",
-    "vitest": "^4.1.10"
+    "typescript-eslint": "^8.72.1",
+    "vitest": "^5.1.0"
   }
 }
