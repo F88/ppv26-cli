@@ -9,7 +9,6 @@
  */
 import { TOKEN_KEYS } from 'promidas-utils/token';
 
-import { createConfigWithNotice } from './config-init.js';
 import { configEntries } from '../../core/config-entries.js';
 import {
   updateGlobalConfig,
@@ -17,6 +16,7 @@ import {
 } from '../../core/config-file.js';
 import { globalConfigPath } from '../../core/user-dirs.js';
 import { print, printError } from '../output.js';
+import { createConfigWithNotice } from './config-init.js';
 
 const TOKEN_KEY = TOKEN_KEYS.PROTOPEDIA_API_V2_TOKEN;
 

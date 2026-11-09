@@ -8,11 +8,11 @@
 import { Box, Text, useInput } from 'ink';
 import { useState } from 'react';
 
+import { formatSnapshotRow } from '../core/format.js';
+import { resolveToken } from '../core/token.js';
 import { Menu, type MenuItem } from './menu.js';
 import { TokenMissingNotice } from './token-missing-notice.js';
 import { useTerminalSize } from './use-terminal-size.js';
-import { formatSnapshotRow } from '../core/format.js';
-import { resolveToken } from '../core/token.js';
 
 import type { SnapshotFileInfo } from '../core/snapshot-catalog.js';
 

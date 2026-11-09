@@ -12,8 +12,8 @@ import path from 'node:path';
 
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 
-import { runConfigSetToken } from './config-set-token.js';
 import { resetConfigEntriesForTests } from '../../core/config-entries.js';
+import { runConfigSetToken } from './config-set-token.js';
 
 const KEY = 'PROTOPEDIA_API_V2_TOKEN';
 

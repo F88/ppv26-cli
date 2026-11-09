@@ -7,8 +7,8 @@ import { Box, Text } from 'ink';
 import { resolveSnapshotStaleAfterMs } from '../core/constants.js';
 import { formatLocalDateTime } from '../core/format.js';
 
-import type { NewbornCounts, SnapshotStats } from './top-stats.js';
 import type { SnapshotSession } from '../core/session.js';
+import type { NewbornCounts, SnapshotStats } from './top-stats.js';
 
 // Status code labels for the breakdown line (ProtoPedia statuses).
 // Short labels for the ProtoPedia statuses (JP: アイデア / 開発中 / 完成

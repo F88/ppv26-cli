@@ -21,7 +21,6 @@
 import { Box, Text, useApp } from 'ink';
 import { useCallback, useEffect, useRef, useState } from 'react';
 
-import { SearchScreen } from './search-screen.js';
 import { createSession, loadSession } from '../core/session.js';
 import { listSnapshots } from '../core/snapshot-catalog.js';
 import { resolveToken } from '../core/token.js';
@@ -33,6 +32,7 @@ import { Header } from '../ui/header.js';
 import { Menu } from '../ui/menu.js';
 import { SnapshotManager } from '../ui/snapshot-manager.js';
 import { SnapshotPicker } from '../ui/snapshot-picker.js';
+import { SearchScreen } from './search-screen.js';
 
 import type { SessionResult, SnapshotSession } from '../core/session.js';
 import type { SnapshotFileInfo } from '../core/snapshot-catalog.js';

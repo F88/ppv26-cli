@@ -5,9 +5,9 @@ import path from 'node:path';
 import { render } from 'ink-testing-library';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 
+import { formatLocalDateTime } from '../core/format.js';
 import { TopApp } from './top-app.js';
 import { computeSnapshotStats, countNewborns } from './top-stats.js';
-import { formatLocalDateTime } from '../core/format.js';
 
 import type { NormalizedPrototype } from 'promidas/types';
 

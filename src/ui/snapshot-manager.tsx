@@ -13,6 +13,11 @@
 import { Box, Text, useInput } from 'ink';
 import { useCallback, useEffect, useRef, useState } from 'react';
 
+import { formatLocalDateTime, formatSizeMB } from '../core/format.js';
+import { createSession, loadSession } from '../core/session.js';
+import { listSnapshots } from '../core/snapshot-catalog.js';
+import { deleteSnapshotFiles } from '../core/snapshot-delete.js';
+import { resolveToken } from '../core/token.js';
 import {
   CreatingProgress,
   progressToCreatingProgress,
@@ -20,11 +25,6 @@ import {
 import { MultiSelectList } from './multi-select-list.js';
 import { TokenMissingNotice } from './token-missing-notice.js';
 import { useTerminalSize } from './use-terminal-size.js';
-import { formatLocalDateTime, formatSizeMB } from '../core/format.js';
-import { createSession, loadSession } from '../core/session.js';
-import { listSnapshots } from '../core/snapshot-catalog.js';
-import { deleteSnapshotFiles } from '../core/snapshot-delete.js';
-import { resolveToken } from '../core/token.js';
 
 import type { SnapshotFileInfo } from '../core/snapshot-catalog.js';
 import type { DeleteResult } from '../core/snapshot-delete.js';

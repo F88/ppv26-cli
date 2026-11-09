@@ -22,12 +22,6 @@ import {
 } from 'ink';
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 
-import { TopHeader } from './top-header.js';
-import {
-  computeSnapshotStats,
-  countNewborns,
-  releaseTimestamps,
-} from './top-stats.js';
 import {
   EMPTY_VALUES,
   matchesFields,
@@ -61,6 +55,12 @@ import {
   visibleColumnsForWidth,
 } from '../ui/table-columns.js';
 import { useTerminalSize } from '../ui/use-terminal-size.js';
+import { TopHeader } from './top-header.js';
+import {
+  computeSnapshotStats,
+  countNewborns,
+  releaseTimestamps,
+} from './top-stats.js';
 
 import type { FieldValues } from '../core/search-model.js';
 import type { SessionResult, SnapshotSession } from '../core/session.js';
