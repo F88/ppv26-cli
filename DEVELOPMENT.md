@@ -92,7 +92,7 @@ Deliberate exceptions to "just update". Do not bump these without revisiting the
 | ---------------------------------------------------------- | ------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `typescript`                                               | Stay on 5.x               | TypeScript 6/7 is the native-compiler (tsgo) generation, not a routine upgrade. Wait until the toolchain (typescript-eslint, tsx) and the PROMIDAS ecosystem (all repos on 5.9) have migrated, then follow. (Decided 2026-07-15)    |
 | `@types/node`                                              | Stay on 24.x              | Type definitions should not exceed the supported/tested Node versions (engines: >=22, CI matrix: 22 / 24). Newer majors would let APIs unavailable on Node 22 pass the typecheck. Raise only together with the engines / CI matrix. |
-| `promidas` / `promidas-utils` / `protopedia-api-v2-client` | Update promptly, together | PROMIDAS ecosystem packages. Keep `promidas` and `protopedia-api-v2-client` on versions that satisfy the peerDependency (`^3`). This CLI dogfoods the ecosystem, so new releases should be adopted early.                           |
+| `promidas` / `promidas-utils` / `protopedia-api-v2-client` | Update promptly, together | PROMIDAS ecosystem packages. Keep `protopedia-api-v2-client` on a version that satisfies the peerDependency declared by `promidas`. This CLI dogfoods the ecosystem, so new releases should be adopted early.                       |
 
 ## GitHub Actions lockfile
 
