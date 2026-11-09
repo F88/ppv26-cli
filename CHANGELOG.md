@@ -9,6 +9,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Security
+
+- Adopted the GitHub Actions workflow lockfile
+  (`.github/workflows/actions.lock`), which pins every action used by the
+  workflows, including the npm publish workflow, to a verified commit. A new
+  `verify-lockfile` workflow checks it on pull requests and pushes to `main`
+  (#13).
+
 ## [0.2.0] - 2026-11-09
 
 ### Changed

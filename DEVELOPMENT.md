@@ -93,3 +93,18 @@ Deliberate exceptions to "just update". Do not bump these without revisiting the
 | `typescript`                                               | Stay on 5.x               | TypeScript 6/7 is the native-compiler (tsgo) generation, not a routine upgrade. Wait until the toolchain (typescript-eslint, tsx) and the PROMIDAS ecosystem (all repos on 5.9) have migrated, then follow. (Decided 2026-07-15)    |
 | `@types/node`                                              | Stay on 24.x              | Type definitions should not exceed the supported/tested Node versions (engines: >=22, CI matrix: 22 / 24). Newer majors would let APIs unavailable on Node 22 pass the typecheck. Raise only together with the engines / CI matrix. |
 | `promidas` / `promidas-utils` / `protopedia-api-v2-client` | Update promptly, together | PROMIDAS ecosystem packages. Keep `promidas` and `protopedia-api-v2-client` on versions that satisfy the peerDependency (`^3`). This CLI dogfoods the ecosystem, so new releases should be adopted early.                           |
+
+## GitHub Actions lockfile
+
+`.github/workflows/actions.lock` pins every action used by the workflows (direct and transitive) to a verified commit, so a moved or hijacked tag cannot change what runs. This matters most for `publish-package-to-npmjs.yml`, which holds `id-token: write` for npm Trusted Publishing. The `verify-lockfile` workflow runs `gh actions-lock --verify` on pull requests and pushes to `main`.
+
+- Do not edit `actions.lock` by hand.
+- After changing a `uses:` line by hand, regenerate the lockfile and commit it together with the workflow change:
+
+    ```console
+    gh extension install github/gh-actions-lock --pin v0.4.1   # once
+    gh actions-lock
+    gh actions-lock --verify
+    ```
+
+- Renovate's action update PRs regenerate `actions.lock` themselves.
