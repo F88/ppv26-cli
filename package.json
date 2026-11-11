@@ -49,7 +49,7 @@
   "dependencies": {
     "commander": "^15.1.0",
     "dotenv": "^18.0.10",
-    "ink": "^7.1.1",
+    "ink": "^8.0.0",
     "promidas": "^5.0.0",
     "promidas-utils": "^5.0.0",
     "protopedia-api-v2-client": "^5.2.0",
